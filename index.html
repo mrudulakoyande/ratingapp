@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating Application</title>
+    <style>
+        *{
+            font-size: 25px;
+        }
+        body{
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Rating Application</h1>
+        <form onsubmit="show()">
+            <input type="number" id="rating" placeholder="Enter rating between 1 to 5">
+            <br>
+            <br>
+        <input type="submit" value="M1">
+        <input type="submit" value="M2">
+        <input type="submit" value="M3">
+        </form>
+        <h2 id="msg"></h2>
+        <script>
+            function show(){
+                event.preventDefault();
+                let rating=document.getElementById("rating");
+                let msg=document.getElementById("msg");
+                let action = document.activeElement.value;
+
+                if(rating.value ===""){
+                    alert("Please Enter Rating");
+                    msg.innerHTML="";
+                    rating.focus();
+                    return;
+                }
+
+                let r = parseInt(rating.value);
+
+                if(r<1 || r>5){
+                    alert("Please Enter Rating between 1 to 5");
+                    msg.innerHTML="";
+                    rating.focus();
+                    return;
+                }
+                let ans ="";
+
+                if(action ==="M1"){
+                    ans =((r==5 || r==4))?"excellent":((r==3||r==2))?"OK":"Poor";
+                    msg.innerHTML="ans 1= "+ans;
+                }
+
+                else if(action ==="M2"){
+                    if((r==5)||(r==4)){
+                        ans ="Excellent";
+                    }
+                    else if((r==3||r==2)){
+                        ans = "OK";
+                    }
+                    else {
+                        ans ="Poor";
+                        msg.innerHTML ="ans2 = "+ans;
+                    }
+                }
+
+                else if(action ==="M3"){
+                    switch(r){
+                        case 5: ans ="Excellent"; break;
+                        case 4: ans ="Excellent"; break;
+                        case 3: ans ="OK"; break;
+                        case 2: ans ="OK"; break;
+                        case 1: ans ="Poor"; break;
+                    }
+                    msg.innerHTML= "ans3 = " +ans;
+                }
+            }
+        </script>
+    </center>
+</body>
+</html>
